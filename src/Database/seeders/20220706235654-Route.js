@@ -40,7 +40,7 @@ module.exports = {
         },
         {
           origin: "remera",
-          destination: "nyabugogo",
+          destination: "rwankuba",
           description: "The best line stress and wear from out  of jokes forever",
           createdAt: new Date(),
           updatedAt: new Date(),

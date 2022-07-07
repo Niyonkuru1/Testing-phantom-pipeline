@@ -1,0 +1,86 @@
+name: Node.JS CI/CD
+
+on:
+  push:
+    branches: [testing-github-actions]
+
+jobs:
+  
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: ${{ secrets.USER_NAME_FOR_ALL_DB }}
+          POSTGRES_PASSWORD: ${{ secrets.PASSWORD_FOR_ALL_DB }}
+          POSTGRES_DB: ${{ secrets.DB_TEST_NAME }}
+          POSTGRES_HOST: ${{ secrets.HOST_FOR_ALL_DB }}
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.JS ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      - name: NPM install, build and test
+        run: |
+          npm install
+          npm migration:test
+          npm test
+        env:
+          USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}  
+          RESET_PASSWORD_KEY: ${{ secrets.RESET_PASSWORD_KEY }}  
+          PORT: ${{ secrets.PORT }}  
+          TRANSPORTER_HOST: ${{ secrets.TRANSPORTER_HOST }}  
+          TRANSPORTER_PORT: ${{ secrets.TRANSPORTER_PORT }}  
+          SECURE: ${{ secrets.SECURE }}  
+          RESET_PASSWORD_SECRET: ${{ secrets.RESET_PASSWORD_SECRET }}  
+          RESET_EXPIRE_TIME: ${{ secrets.RESET_EXPIRE_TIME }}
+          HOST_FOR_ALL_DB: ${{ secrets.HOST_FOR_ALL_DB }}
+          DIALECT_FOR_ALL_DB: ${{ secrets.DIALECT_FOR_ALL_DB }}  
+          CLIENT_URL: ${{ secrets.CLIENT_URL }}  
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}  
+          USER_EMAIL_PASSWORD: ${{ secrets.USER_EMAIL_PASSWORD }}  
+          PASSWORD_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
+          PORT_FOR_ALL_DB: ${{ secrets.PORT_FOR_ALL_DB }}  
+          DB_PRODUCTION_NAME: ${{ secrets.USER_EMAIL_PASSWORD }}  
+          DB_DEVELOPMENT_NAME: ${{ secrets.DB_DEVELOPMENT_NAME }}  
+          DB_TEST_NAME: ${{ secrets.DB_TEST_NAME }}  
+
+
+  # deploy:
+  #   name: Deploy
+  #   needs: [test]
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         fetch-depth: 0
+      
+  #     - name: Add remote origin to Heroku
+  #       run: git remote add heroku https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
+      
+  #     - name: Deploy code to heroku
+  #       run: git push --force heroku main

@@ -16,6 +16,7 @@ module.exports = {
       },
       plate_number: {
         type: Sequelize.STRING,
+        unique: true,
       },
       createdAt: {
         allowNull: false,
