@@ -10,9 +10,11 @@ module.exports = {
       },
       origin: {
         type: Sequelize.STRING,
+        unique: "compositeIndex",
       },
       destination: {
         type: Sequelize.STRING,
+        unique: "compositeIndex",
       },
       description: {
         type: Sequelize.STRING,

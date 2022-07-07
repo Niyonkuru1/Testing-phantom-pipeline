@@ -70,7 +70,6 @@ describe("POST API /api/v1/assign/", () => {
                  expect(res.body).to.have.property("message");
                  return done();
                });
-             return done();
            });
        });
    });
