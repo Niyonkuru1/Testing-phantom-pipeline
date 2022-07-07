@@ -70,7 +70,6 @@ describe("POST API /api/v1/assign/", () => {
                  expect(res.body).to.have.property("message");
                  return done();
                });
-             return done();
            });
        });
    });
@@ -114,6 +113,6 @@ describe("DELETE API /api/v1/route/{:id}", () => {
         if (err) return done(err);
         expect(res).to.have.status(404);
         expect(res.body).to.have.property("status");
-        return done();
+        done();
       });
   });

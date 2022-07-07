@@ -1,9 +1,7 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Driver_buse_assign extends Model {
+  class Token extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,19 +11,15 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Driver_buse_assign.init(
+  Token.init(
     {
-      route: DataTypes.STRING,
-      driver_name: DataTypes.STRING,
-      plate_number: {
-        type: DataTypes.INTEGER,
-        unique: true,
-      },
+      token_content: DataTypes.TEXT,
+      userId: DataTypes.INTEGER,
     },
     {
       sequelize,
-      modelName: "Driver_buse_assign",
+      modelName: "Token",
     }
   );
-  return Driver_buse_assign;
+  return Token;
 };
