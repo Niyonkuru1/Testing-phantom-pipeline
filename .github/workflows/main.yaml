@@ -42,9 +42,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       
+      # - name: Run migrations
+      #   run: psql -f db/migrations/file_name.sql postgresql://postgres:postgres@localhost:5432/postgres
+
+
       - name: NPM install, build and test
         run: |
           npm install
+          npx sequelize-cli db:migrate
           npm run test
         env:
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
