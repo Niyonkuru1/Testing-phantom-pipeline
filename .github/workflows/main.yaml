@@ -50,7 +50,7 @@ jobs:
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}  
           RESET_PASSWORD_KEY: ${{ secrets.RESET_PASSWORD_KEY }}  
-          PORT: ${{ secrets.PORT }}  
+          PORT: 3000 
           TRANSPORTER_HOST: ${{ secrets.TRANSPORTER_HOST }}  
           TRANSPORTER_PORT: ${{ secrets.TRANSPORTER_PORT }}  
           SECURE: ${{ secrets.SECURE }}  
