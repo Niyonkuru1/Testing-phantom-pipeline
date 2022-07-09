@@ -44,6 +44,7 @@ jobs:
       - name: NPM install, build and test
         run: |
           npm install
+          npm
           npm test
         env:
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
