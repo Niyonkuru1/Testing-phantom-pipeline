@@ -49,10 +49,8 @@ jobs:
       - name: NPM install, build and test
         run: |
           npm install
-          npx sequelize-cli db:migrate
           npm run test
         env:
-          NODE_ENV: test
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}  
           RESET_PASSWORD_KEY: ${{ secrets.RESET_PASSWORD_KEY }}  
