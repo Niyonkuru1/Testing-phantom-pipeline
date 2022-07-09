@@ -61,9 +61,9 @@ jobs:
           CLIENT_URL: ${{ secrets.CLIENT_URL }}  
           USER_EMAIL: ${{ secrets.USER_EMAIL }}  
           USER_EMAIL_PASSWORD: ${{ secrets.USER_EMAIL_PASSWORD }}  
-          PASSWORD_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
+          PASSWORD_FOR_ALL_DB: ${{ secrets.PASSWORD_FOR_ALL_DB }}  
           PORT_FOR_ALL_DB: ${{ secrets.PORT_FOR_ALL_DB }}  
-          DB_PRODUCTION_NAME: ${{ secrets.USER_EMAIL_PASSWORD }}  
+          DB_PRODUCTION_NAME: ${{ secrets.DB_PRODUCTION_NAME }}  
           DB_DEVELOPMENT_NAME: ${{ secrets.DB_DEVELOPMENT_NAME }}  
           DB_TEST_NAME: ${{ secrets.DB_TEST_NAME }}  
 
