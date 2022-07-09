@@ -1,5 +1,5 @@
 import nodemailer from "nodemailer";
-import pool from "../Database/database";
+import pool from "../database/database";
 
 // the middleware used to send email to the driver when assingment or unassignment happen to him.
 // =============================================================================================
