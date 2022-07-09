@@ -45,12 +45,6 @@ jobs:
       - name: NPM install, build and test
         run: |
           npm install
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-        run: |
           npm test
         env:
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
