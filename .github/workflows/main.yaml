@@ -43,7 +43,7 @@ jobs:
 
 
       - name: NPM install, build and test
-        run:
+        run: |
           npm install
           npm run test
         env:
