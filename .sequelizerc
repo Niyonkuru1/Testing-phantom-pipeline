@@ -11,9 +11,9 @@ const {resolve } = require('path');
 //   "migrations-path": path.resolve('./src/database/migrations'),
 // };
 module.exports = {
-  "config": resolve("src", "database", "config", "config.js"),
+  "config": resolve("src", "config", "config.js"),
   "migrations-path": resolve("src", "database", "migrations"),
-  "models-path": resolve("src", "models"),
+  "models-path": resolve("src", "database", "models"),
   "seeders-path": resolve("src", "database", "seeders"),
 };
 
