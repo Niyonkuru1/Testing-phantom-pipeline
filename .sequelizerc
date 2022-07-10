@@ -1,9 +1,15 @@
 require("@babel/register");
 require('dotenv').config();
 
+<<<<<<< HEAD
 const { resolve } = require('path');
 
 
+=======
+const path = require('path');
+const {resolve} = require('path');
+
+>>>>>>> 4c984325079d04a88fe46bad4f01c57feb7015f4
 // module.exports = {
 //   "config": path.resolve('./src/config', 'config.js'),
 //   "models-path": path.resolve('./src/models'),
@@ -11,9 +17,17 @@ const { resolve } = require('path');
 //   "migrations-path": path.resolve('./src/database/migrations'),
 // };
 module.exports = {
+<<<<<<< HEAD
   config: resolve("src", "database", "config", "config.js"),
+=======
+  "config": resolve("src", "database", "config", "config.js"),
+>>>>>>> 4c984325079d04a88fe46bad4f01c57feb7015f4
   "migrations-path": resolve("src", "database", "migrations"),
   "models-path": resolve("src", "database", "models"),
   "seeders-path": resolve("src", "database", "seeders"),
 };
+<<<<<<< HEAD
 // npx sequelize-cli init
+=======
+
+>>>>>>> 4c984325079d04a88fe46bad4f01c57feb7015f4

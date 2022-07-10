@@ -35,9 +35,18 @@ module.exports = (sequelize, DataTypes) => {
 
       // Go on reading for further information about primary keys
       // identifier: { type: DataTypes.STRING, primaryKey: true },
+<<<<<<< HEAD
     }, {
     sequelize,
     modelName: 'Route',
   });
+=======
+    },
+    {
+      sequelize,
+      modelName: "Route",
+    }
+  );
+>>>>>>> 4c984325079d04a88fe46bad4f01c57feb7015f4
   return Route;
 };
