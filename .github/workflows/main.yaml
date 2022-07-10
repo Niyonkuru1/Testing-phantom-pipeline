@@ -10,21 +10,21 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
 
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_USER: ${{ secrets.USER_NAME_FOR_ALL_DB }}
-          POSTGRES_PASSWORD: ${{ secrets.PASSWORD_FOR_ALL_DB }}
-          POSTGRES_DB: ${{ secrets.DB_TEST_NAME }}
-          POSTGRES_HOST: ${{ secrets.HOST_FOR_ALL_DB }}
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-        ports:
-          - 5432:5432
+    # services:
+    #   postgres:
+    #     image: postgres
+    #     env:
+    #       POSTGRES_USER: ${{ secrets.USER_NAME_FOR_ALL_DB }}
+    #       POSTGRES_PASSWORD: ${{ secrets.PASSWORD_FOR_ALL_DB }}
+    #       POSTGRES_DB: ${{ secrets.DB_TEST_NAME }}
+    #       POSTGRES_HOST: ${{ secrets.HOST_FOR_ALL_DB }}
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+    #     ports:
+    #       - 5432:5432
 
     strategy:
       matrix:
@@ -48,7 +48,9 @@ jobs:
 
       - name: NPM install, build and test
         run: |
-          rm -rf node_modules && rm ./package-lock.json && npm install
+          npm install
+          npm run migration:test
+          npm run seed:test
           npm run test
         env:
           USER_NAME_FOR_ALL_DB: ${{ secrets.USER_NAME_FOR_ALL_DB }}  
@@ -70,6 +72,11 @@ jobs:
           DB_PRODUCTION_NAME: ${{ secrets.DB_PRODUCTION_NAME }}  
           DB_DEVELOPMENT_NAME: ${{ secrets.DB_DEVELOPMENT_NAME }}  
           DB_TEST_NAME: ${{ secrets.DB_TEST_NAME }}  
+          HEROKU_TEST_USER: ${{ secrets.HEROKU_TEST_USER }}  
+          HEROKU_TEST_PASSWORD: ${{ secrets.HEROKU_TEST_PASSWORD }}  
+          HEROKU_TEST_PORT: ${{ secrets.HEROKU_TEST_PORT }}  
+          HEROKU_TEST_DATABASE: ${{ secrets.HEROKU_TEST_DATABASE }}  
+          HEROKU_TEST_HOST: ${{ secrets.HEROKU_TEST_HOST }}  
 
 
   # deploy:

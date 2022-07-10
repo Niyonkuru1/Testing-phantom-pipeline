@@ -2,7 +2,6 @@
 require("dotenv").config();
 
 import { Pool } from "pg";
-
 let CURRENT_DATABASE;
 
 if (process.env.NODE_ENV === "production") {
@@ -25,3 +24,5 @@ console.log(
 );
 
 export default pool;
+
+
