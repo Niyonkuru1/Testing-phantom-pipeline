@@ -1,5 +1,5 @@
 // import pool from "../Database/database";
-import { Driver_buse_assign as Assign } from "../models/index"
+import { Driver_buse_assign as Assign } from "../../locales/testing-removal-for-just-testing/models/index"
 import { assignValidation } from "../validations/index";
 
 export const getAllAssigned = async (req, res) => {
