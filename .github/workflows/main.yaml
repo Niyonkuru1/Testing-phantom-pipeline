@@ -49,6 +49,7 @@ jobs:
       - name: NPM install, build and test
         run: |
           npm install
+          npx sequelize-cli init
           npm run migration:test
           npm run seed:test
           npm run test
